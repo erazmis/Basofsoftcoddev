@@ -1,28 +1,23 @@
-// введённое число - секунды. Их нужно преобразовать в формат ЧЧч ММмин ССс
 package com.company;
 
 import java.util.Scanner;
 
 public class LP5 {
 
-    private static Scanner scan;
-
     public static void main(String[] args) {
-        int a, hours, min, sec;
+        int sec, hours, min, sec;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Введите секунды (натуральное число):");
+        sec = scan.nextInt();
 
-        scan = new Scanner(System.in);
+        hours = sec / 3600;
+        sec %= 3600;
 
-        a = scan.nextInt();
+        min = sec / 60;
+        sec %= 60;
 
-        hours = a / 3600;
-        a %= 3600;
-
-        min = a / 60;
-        a %= 60;
-
-        sec = a;
+        sec = sec;
 
         System.out.println(hours + "ч " + min + "мин " + sec + "с");
-
     }
 }

@@ -1,25 +1,21 @@
-// Определить цифры, входящие в запись обоих введённых чисел
 package com.company;
 
 import java.util.Scanner;
 
 public class C8 {
 
-    private static Scanner scan;
-
     public static void main(String[] args) {
-	    scan = new Scanner(System.in);
-	    String a = scan.nextLine();
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Введите первое число:");
+        String a = scan.nextLine();
+        System.out.println("Введите второе число:");
         String b = scan.nextLine();
+        System.out.println("Цифры, входящие в запись обоих чисел:");
 
-        for (char ch: a.toCharArray()) {
-
+        for (char ch : a.toCharArray()) {
             if (b.indexOf(ch) >= 0) {
-                    System.out.print(ch + " ");
+                System.out.print(ch + " ");
             }
-
         }
-
-
     }
 }

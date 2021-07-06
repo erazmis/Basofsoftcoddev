@@ -1,18 +1,21 @@
-// если точка в закрашенной области - true, если нет - false
 package com.company;
 
 import java.util.Scanner;
 
 public class LP6 {
 
-    private static Scanner scan;
-
     public static void main(String[] args) {
-        boolean xx1, yy1, xx2, yy2;
-        int x, y;
+        Scanner scan = new Scanner(System.in);
+        boolean xx1;
+        boolean yy1;
+        boolean xx2;
+        boolean yy2;
+        int x;
+        int y;
 
-        scan = new Scanner(System.in);
-
+        System.out.println("Закрашенная область над осью х: ось ОХ - от -2 до 2, ось OY - от 0 до 4." +
+                "\nЗакрашенная область под осью х: ось ОХ - от -4 до 4, ось OY - от -3 до 0.");
+        System.out.println("Введите координаты точки (х, у):");
         x = scan.nextInt();
         y = scan.nextInt();
 
@@ -22,7 +25,7 @@ public class LP6 {
         xx2 = -2 <= x && x <= 2; // над осью х
         yy2 = 0 <= y && y <= 4;
 
-	    System.out.println((xx1 && yy1) || (xx2 && yy2));
+        System.out.println((xx1 && yy1) || (xx2 && yy2));
 
     }
 }

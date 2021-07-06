@@ -1,28 +1,28 @@
-// Для каждого натурального числа от м до н вывести все делители, кроме 1 и самого числа
 package com.company;
 
 import java.util.Scanner;
 
 public class C7 {
 
-    private static Scanner scan;
-
     public static void main(String[] args) {
-	    scan = new Scanner(System.in);
-        int m = scan.nextInt();
-        int n = scan.nextInt();
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Введите начало промежутка (натуральное число):");
+        int begin = scan.nextInt();
+        System.out.println("Введите конец промежутка (натуральное число):");
+        int end = scan.nextInt();
+        System.out.println("Список делителей чисел заданного промежутка:");
 
         do {
-            System.out.print("\n" + m + ": ");
+            System.out.println(begin + ": ");
 
-            for (int i = 2; i < m; i++) {
+            for (int i = 2; i < begin; i++) {
 
-                if (m / i == (double) m / i) {
+                if (begin / i == (double) begin / i) {
                     System.out.print(i + " ");
                 }
             }
-            ++m;
-        } while (m != n + 1);
+            ++begin;
 
+        } while (begin != end + 1);
     }
 }
