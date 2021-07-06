@@ -1,1 +1,18 @@
-D:/Если мы выживем этим летом/Epam courses/1. Basics of software code development/Tasks/Cycles/4/src/com/company/C4.java
+package com.company;
+
+import java.math.BigInteger;
+
+public class C4 {
+
+    public static void main(String[] args) {
+        BigInteger product = BigInteger.valueOf(1);
+        BigInteger sqrI;
+
+        for (int i = 1; i < 201; i++) {
+            sqrI = BigInteger.valueOf(i * i);
+            product = product.multiply(sqrI);
+        }
+
+        System.out.print("Произведение квадратов первых 200 чисел равно " + product);
+    }
+}
