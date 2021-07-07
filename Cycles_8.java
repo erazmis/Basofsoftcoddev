@@ -1,3 +1,4 @@
+// Вывести цифры, входящие в запись обоих чисел
 package com.company;
 
 import java.util.Scanner;
