@@ -2,7 +2,7 @@
  * Написать метод(методы) для нахождения наибольшего общего делителя четырех натуральных чисел.
  */
 
-//package com.epam.module_2.subroutines.Subroutines_2;
+package com.epam.module_2.subroutines;
 
 import java.util.Random;
 
@@ -32,4 +32,5 @@ public class Subroutines_2 {
 		}
 		return second;
 	}
+
 }

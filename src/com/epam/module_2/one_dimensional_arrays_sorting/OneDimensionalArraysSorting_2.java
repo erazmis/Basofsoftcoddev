@@ -3,6 +3,8 @@
  * чтобы она тоже была неубывающей. Примечание. Дополнительный массив не использовать. 
  */
 
+package com.epam.module_2.one_dimensional_arrays_sorting;
+
 import java.util.Random;
 import java.util.Arrays;
 

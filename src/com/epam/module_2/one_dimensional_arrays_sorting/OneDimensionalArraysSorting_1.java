@@ -2,6 +2,8 @@
 один  массив,  включив  второй  массив  между  k-м  и  (k+1)  -  м  элементами  первого,  при  этом  не  используя 
 дополнительный массив. */
 
+package com.epam.module_2.one_dimensional_arrays_sorting;
+
 import java.util.Scanner;
 import java.lang.Math;
 

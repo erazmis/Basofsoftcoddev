@@ -5,6 +5,8 @@
  * повторяется. Написать алгоритм сортировки выбором.
 */
 
+package com.epam.module_2.one_dimensional_arrays_sorting;
+
 import java.lang.Math;
 import java.util.Arrays;
 

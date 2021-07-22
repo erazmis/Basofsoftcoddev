@@ -1,3 +1,10 @@
+/**
+ * Вычислить  площадь  правильного  шестиугольника  со  стороной  а,  
+ * используя  метод  вычисления  площади треугольника. 
+ */
+
+package com.epam.module_2.subroutines;
+
 import java.util.Random;
 import java.lang.Math;
 
