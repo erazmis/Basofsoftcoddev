@@ -7,17 +7,41 @@ import java.util.Random;
 
 public class OneDimensionalArrays_10 {
 
+    private static final int SIZE = 20;
+
     public static void main(String[] args) {
-        Random rand = new Random();
         int[] array = new int[20];
-        System.out.print("Массив:");
+        createArray(array);
+
+        printArray(array);
+
+        printNewArray(array);
+    }
+
+    private static void createArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = new Random().nextInt(10);
+        }
+    }
+
+    private static void printArray(int[] array) {
+        System.out.println("Array:");
 
         for (int i = 0; i < array.length; i++) {
-            array[i] = rand.nextInt(11);
-            if (i % 2 != 0) {
+            System.out.print(" " + array[i]);
+        }
+        System.out.println();
+    }
+
+    private static void printNewArray(int[] array) {
+        System.out.println("New array:");
+
+        for (int i = 0; i < array.length; i++) {
+            if (i % 2 == 1) {
                 array[i] = 0;
             }
             System.out.print(" " + array[i]);
         }
+        System.out.println();
     }
 }

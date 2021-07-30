@@ -8,38 +8,38 @@ import java.util.Random;
 
 class Subroutines_6 {
 
-	public static void main(String[] args) {
-		Random rand = new Random();
-		int a = rand.nextInt(101);
-		int b = rand.nextInt(101);
-		int c = rand.nextInt(101);
+    public static void main(String[] args) {
+        Random rand = new Random();
+        int a = rand.nextInt(101);
+        int b = rand.nextInt(101);
+        int c = rand.nextInt(101);
 
-		String answer = coprime(a, b, c);
-		System.out.printf("Numbers %s, %s, %s are %scoprime", a, b, c, answer);
-	}
+        String answer = coprime(a, b, c);
+        System.out.printf("Numbers %s, %s, %s are %scoprime", a, b, c, answer);
+    }
 
-	private static String coprime(int a, int b, int c) {
-		
-		if (euclideanAlgorithm(euclideanAlgorithm(a, b), c) == 1) {
-			return "";
-		} else {
-			return "not ";
-		}
-	}
+    private static String coprime(int a, int b, int c) {
 
-	public static int euclideanAlgorithm(int first, int second) {
-		int buffer;
-		if (first < second) {
-			buffer = first;
-			first = second;
-			second = buffer;	
-		}
+        if (greatestCommonDivisor(greatestCommonDivisor(a, b), c) == 1) {
+            return "";
+        } else {
+            return "not ";
+        }
+    }
 
-		while (first % second != 0) {
-			buffer = first;
-			first = second;
-			second = buffer % second;
-		}
-		return second;
-	}
+    public static int greatestCommonDivisor(int first, int second) {
+        int buffer;
+        if (first < second) {
+            buffer = first;
+            first = second;
+            second = buffer;
+        }
+
+        while (first % second != 0) {
+            buffer = first;
+            first = second;
+            second = buffer % second;
+        }
+        return second;
+    }
 }

@@ -10,22 +10,49 @@ public class ArraysOfArrays_7 {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Введите чётное число:");
+        System.out.println("Enter even number:");
         int n = scan.nextInt();
-        double [][] array = new double[n][n];
-        int negatCount = 0;
+        double[][] matrix = new double[n][n];
+        createMatrix(matrix);
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                array[i][j] = Math.sin((double) (i * i - j * j) / n);
-                System.out.printf("  %.3f", array[i][j]);
-                if (array[i][j] < 0) {
-                    negatCount++;
+        printMatrix(matrix);
+
+        printAmountOfPositiveElements(matrix);
+    }
+
+    private static void createMatrix(double[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = Math.sin((double) (i * i - j * j) / matrix[i].length);
+            }
+        }
+    }
+
+    private static void printMatrix(double[][] matrix) {
+        System.out.println("Мatrix:");
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] < 0) {
+                    System.out.printf("  %.3f", matrix[i][j]);
+                } else {
+                    System.out.printf("   %.3f", matrix[i][j]);
                 }
             }
-            System.out.println(" ");
+            System.out.println();
+        }
+    }
+
+    private static void printAmountOfPositiveElements(double[][] matrix) {
+        int positiveElements = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] > 0) {
+                    positiveElements++;
+                }
+            }
         }
 
-        System.out.println("Количество отрицательных значений: " + negatCount);
+        System.out.println("Amount of positive elements: " + positiveElements);
     }
 }

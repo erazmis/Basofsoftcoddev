@@ -8,46 +8,58 @@ import java.util.Random;
 public class ArraysOfArrays_14ver2 {
 
     public static void main(String[] args) {
-        Random rand = new Random();
         int n = (int) (Math.random() * 10) + 1;
         int m = (int) (Math.random() * 10) + n;
-        int[][] array = new int[m][n];
+        int[][] matrix = new int[m][n];
+        createMatrix(matrix);
 
-        for (int i = 0; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                array[i][j] = (int) (Math.random() * 2);
+        printMatrix(correctMatrix(matrix));
+    }
+
+    private static void createMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 1; j < matrix[i].length; j++) {
+                matrix[i][j] = (int) (Math.random() * 2);
             }
         }
+    }
 
-        for (int i = 1; i < n; i++) {
+    private static int[][] correctMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix[0].length; i++) {
             int count = 0;
-            for (int j = 0; j < m; j++) {
-                if (array[j][i] == 1) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[j][i] == 1) {
                     count++;
                 }
             }
-            while (count != i) {
-                int line = rand.nextInt(m);
+
+            while (count != i + 1) {
+                int line = new Random().nextInt(matrix[0].length);
                 if (count > i) {
-                    if (array[line][i] == 1) {
-                        array[line][i] = 0;
+                    if (matrix[line][i] == 1) {
+                        matrix[line][i] = 0;
                         count--;
                     }
                 } else {
-                    if (array[line][i] == 0) {
-                        array[line][i] = 1;
+                    if (matrix[line][i] == 0) {
+                        matrix[line][i] = 1;
                         count++;
                     }
                 }
             }
         }
 
-        System.out.println("Массив:");
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print("  " + array[i][j]);
+        return matrix;
+    }
+
+    private static void printMatrix(int[][] matrix) {
+        System.out.println("Мatrix:");
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print("   " + matrix[i][j]);
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 }

@@ -1,70 +1,86 @@
 // Отсортировать строки матрицы по возрастанию и убыванию значений элементов
 package com.epam.module_2.arrays_of_arrays;
 
+import java.util.Random;
+
 public class ArraysOfArrays_12 {
 
+    static int SIZE = 10;
+
     public static void main(String[] args) {
-        int[][] array = new int[10][10];
-        System.out.println("Массив:");
+        int[][] matrix = new int[SIZE][SIZE];
+        createMatrix(matrix);
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                array[i][j] = (int) (Math.random() * 10);
-                System.out.print("  " + array[i][j]);
+        System.out.println("Мatrix:");
+        printMatrix(matrix);
+
+        System.out.println("Matrix with lines, sorted in ascending order:");
+        printMatrix(sortLinesAscending(matrix));
+
+        System.out.println("Matrix with lines, sorted in discending order:");
+        printMatrix(sortLinesDiscending(matrix));
+    }
+
+    private static void createMatrix(int[][] matrix) {
+        Random rand = new Random();
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = rand.nextInt(10);
             }
-            System.out.println("");
         }
+    }
 
+    private static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print("   " + matrix[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    private static int[][] sortLinesAscending(int[][] matrix) {
         int first;
         int second;
-        boolean changes = true;
-        while (changes) {
-            changes = false;
-            for (int i = 0; i < 10; i++) {
-                for (int j = 1; j < 10; j++) {
-                    first = array[i][j - 1];
-                    second = array[i][j];
+        boolean isNotSortedYet = true;
+        while (isNotSortedYet) {
+            isNotSortedYet = false;
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 1; j < matrix[i].length; j++) {
+                    first = matrix[i][j - 1];
+                    second = matrix[i][j];
                     if (first > second) {
-                        array[i][j - 1] = second;
-                        array[i][j] = first;
-                        changes = true;
+                        matrix[i][j - 1] = second;
+                        matrix[i][j] = first;
+                        isNotSortedYet = true;
                     }
                 }
             }
         }
 
-        System.out.println("\nCтроки матрицы по возрастанию значений элементов:");
+        return matrix;
+    }
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                System.out.print("  " + array[i][j]);
-            }
-            System.out.println("");
-        }
-
-        changes = true;
-        while (changes) {
-            changes = false;
-            for (int i = 0; i < 10; i++) {
-                for (int j = 1; j < 10; j++) {
-                    first = array[i][j - 1];
-                    second = array[i][j];
+    private static int[][] sortLinesDiscending(int[][] matrix) {
+        int first;
+        int second;
+        boolean isNotSortedYet = true;
+        while (isNotSortedYet) {
+            isNotSortedYet = false;
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 1; j < matrix[i].length; j++) {
+                    first = matrix[i][j - 1];
+                    second = matrix[i][j];
                     if (first < second) {
-                        array[i][j - 1] = second;
-                        array[i][j] = first;
-                        changes = true;
+                        matrix[i][j - 1] = second;
+                        matrix[i][j] = first;
+                        isNotSortedYet = true;
                     }
                 }
             }
         }
 
-        System.out.println("\nCтроки матрицы по убыванию значений элементов:");
-
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                System.out.print("  " + array[i][j]);
-            }
-            System.out.println("");
-        }
+        return matrix;
     }
 }

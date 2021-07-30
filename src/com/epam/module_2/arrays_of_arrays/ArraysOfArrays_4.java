@@ -14,26 +14,39 @@ public class ArraysOfArrays_4 {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Введите чётное число:");
+        System.out.println("Enter even number:");
         int n = scan.nextInt();
-        int[][] array = new int[n][n];
-        System.out.println("Матрица:");
+        int[][] matrix = new int[n][n];
+        createMatrix(matrix);
 
-        for (int i = 0; i < n; i++) {
+        printMatrix(matrix);
+    }
+
+    private static void createMatrix(int[][] matrix) {
+        System.out.println("Маtrix:");
+
+        for (int i = 0; i < matrix.length; i++) {
             if (i % 2 == 0) {
-                for (int j = 0; j < n; j++) {
-                    array [i][j] = j + 1;
-                    System.out.print("   " + array[i][j]);
+                for (int j = 0; j < matrix[i].length; j++) {
+                    matrix[i][j] = j + 1;
                 }
-                System.out.println(" ");
 
             } else {
-                for (int j = n - 1; j > -1; j--) {
-                    array[i][j] = j + 1;
-                    System.out.print("   " + array[i][j]);
+                for (int j = 0; j < matrix[i].length; j++) {
+                    matrix[i][j] = matrix[i].length - j;
                 }
-                System.out.println(" ");
             }
+        }
+    }
+
+    private static void printMatrix(int[][] matrix) {
+        System.out.println("Мatrix:");
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print("   " + matrix[i][j]);
+            }
+            System.out.println();
         }
     }
 }

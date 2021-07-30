@@ -8,27 +8,43 @@ public class OneDimensionalArrays_1 {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        Random rand = new Random();
+        System.out.println("Enter array's length:");
+        int length = scan.nextInt();
+        int[] array = new int[length];
+        createArray(array);
 
-        System.out.println("Введите длину массива:");
-        int len = scan.nextInt();
-	    int [] array = new int [len];
+        printArray(array);
 
-        System.out.println("Введите делитель:");
+        System.out.println("\nEnter divider:");
         int divider = scan.nextInt();
-        int sum = 0;
-        System.out.print("Массив:");
+
+        int sum = calculateSumOfMultiples(array, divider);
+        System.out.println("The sum of elements, that are multiples of " + divider + ", is equal to " + sum);
+    }
+
+    private static void createArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = new Random().nextInt(100);
+        }
+    }
+
+    private static void printArray(int[] array) {
+        System.out.println("Array:");
 
         for (int i = 0; i < array.length; i++) {
-            array[i] = rand.nextInt(100);
             System.out.print(" " + array[i]);
+        }
+    }
+
+    private static int calculateSumOfMultiples(int[] array, int divider) {
+        int sum = 0;
+
+        for (int i = 0; i < array.length; i++) {
             if (array[i] % divider == 0) {
                 sum += array[i];
             }
         }
-        System.out.println("\nСумма элементов, кратных " + divider + ", равна " + sum);
 
-
-
+        return sum;
     }
 }

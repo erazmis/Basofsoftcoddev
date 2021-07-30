@@ -5,27 +5,48 @@ import java.util.Random;
 
 public class ArraysOfArrays_10 {
 
-    public static void main(String[] args) {
-        Random rand = new Random();
-        int[][] array = new int[10][10];
+    static int SIZE = 10;
 
-        System.out.println("Матрица:");
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                array[i][j] = rand.nextInt(19) - 9;
-                if (array[i][j] < 0){
-                    System.out.print("  " + array[i][j]);
-                } else{
-                    System.out.print("   " + array[i][j]);
+    public static void main(String[] args) {
+        int[][] matrix = new int[SIZE][SIZE];
+        createMatrix(matrix);
+
+        printMatrix(matrix);
+
+        calculatePositiveElements(matrix);
+    }
+
+    private static void createMatrix(int[][] matrix) {
+        Random rand = new Random();
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = rand.nextInt(19) - 9;
+            }
+        }
+    }
+
+    private static void printMatrix(int[][] matrix) {
+        System.out.println("Мatrix:");
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] < 0) {
+                    System.out.print("  " + matrix[i][j]);
+                } else {
+                    System.out.print("   " + matrix[i][j]);
                 }
             }
-            System.out.println("");
-        }
 
-        System.out.println("Положительные элементы главной диагонали матрицы:");
+            System.out.println();
+        }
+    }
+
+    private static void calculatePositiveElements(int[][] matrix) {
+        System.out.println("Positive elements of matrix's main diagonal:");
         for (int i = 0; i < 10; i++) {
-            if (array[i][i] > 0) {
-                System.out.print("  " + array[i][i]);
+            if (matrix[i][i] > 0) {
+                System.out.print("  " + matrix[i][i]);
             }
         }
     }

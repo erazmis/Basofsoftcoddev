@@ -1,33 +1,61 @@
-/*Задана последовательность N вещественных чисел.
+/* Задана последовательность N вещественных чисел.
 Вычислить сумму чисел, порядковые номера которых являются простыми числами.
  */
 package com.epam.module_2.one_dimensional_arrays;
 
-import java.util.Random;
-
 public class OneDimensionalArrays_6 {
 
+    private static final int SIZE = 15;
+
     public static void main(String[] args) {
-        Random rand = new Random();
-        int[] array = new int[15];
-        int sum = 0;
-        System.out.print("Массив:");
+        double[] array = new double[SIZE];
+        createArray(array);
+
+        printArray(array);
+
+        double sum = calculateSumOfSimpleIndexElements(array);
+
+        System.out.printf("Sum of elements, that have simple indexes, equals to %.5f", sum);
+    }
+
+    private static void createArray(double[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = Math.random() * 100;
+        }
+    }
+
+    private static void printArray(double[] array) {
+        System.out.println("Array:");
 
         for (int i = 0; i < array.length; i++) {
-            array[i] = rand.nextInt(31);
-            System.out.print(" " + array[i]);
+            System.out.printf(" %.5f", array[i]);
+        }
 
-            boolean simple = true;
-            for (int j = 2; j < array[i]; j++) {
-                if ((array[i] % j == 0) && (array[i] != 2)) {
-                    simple = false;
-                    break;
-                }
+        System.out.println();
+    }
+
+    private static boolean isSimple(int num) {
+        boolean isSimple = true;
+
+        for (int i = 2; i < num; i++) {
+            if (num % i == 0) {
+                isSimple = false;
+                break;
             }
-            if (simple) {
+        }
+
+        return isSimple;
+    }
+
+    private static double calculateSumOfSimpleIndexElements(double[] array) {
+        double sum = 0;
+
+        for (int i = 1; i < array.length; i++) {
+            if (isSimple(i)) {
                 sum += array[i];
             }
         }
-        System.out.print("\nСумма простых чисел массива равна " + sum);
+
+        return sum;
     }
 }

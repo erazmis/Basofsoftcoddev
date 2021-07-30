@@ -6,32 +6,59 @@ import java.util.Scanner;
 
 public class ArraysOfArrays_3 {
 
+    static int SIZE = 10;
+
+    static Scanner scan = new Scanner(System.in);
+
     public static void main(String[] args) {
+        int[][] matrix = new int[SIZE][SIZE];
+        createMatrix(matrix);
+
+        printMatrix(matrix);
+
+        printLine(matrix);
+
+        printColumn(matrix);
+    }
+
+    private static void createMatrix(int[][] matrix) {
         Random rand = new Random();
-        Scanner scan = new Scanner(System.in);
-        int[][] array = new int[10][10];
-        System.out.println("Матрица:");
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                array[i][j] = rand.nextInt(10);
-                System.out.print("   " + array[i][j]);
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = rand.nextInt(10);
             }
-            System.out.println(" ");
         }
+    }
 
-        System.out.println("Введите номер строки от 1 до 10:");
+    private static void printMatrix(int[][] matrix) {
+        System.out.println("Мatrix:");
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print("   " + matrix[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    private static void printLine(int[][] matrix) {
+        System.out.println("Enter line number from 1 to " + SIZE);
         int line = scan.nextInt();
-        System.out.println(line + "-ая строка:");
-        for (int i = 0; i < 10; i++) {
-            System.out.print(" " + array[line - 1][i]);
-        }
 
-        System.out.println("\nВведите номер столбца от 1 до 10:");
+        System.out.println("Line " + line);
+        for (int i = 0; i < matrix[line - 1].length; i++) {
+            System.out.print(" " + matrix[line - 1][i]);
+        }
+    }
+
+    public static void printColumn(int[][] matrix) {
+        System.out.println("\nEnter column number from 1 to " + SIZE);
         int column = scan.nextInt();
-        System.out.println(column + "-ый столбец:");
-        for (int i = 0; i < 10; i++) {
-            System.out.print(" " + array[i][column - 1]);
+
+        System.out.println("Column " + column);
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.println(matrix[i][column - 1]);
         }
     }
 }

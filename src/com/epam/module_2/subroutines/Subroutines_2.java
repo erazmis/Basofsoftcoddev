@@ -7,30 +7,31 @@ package com.epam.module_2.subroutines;
 import java.util.Random;
 
 public class Subroutines_2 {
-	public static void main(String[] args) {
-		Random rand = new Random();
-		int first = rand.nextInt(301);
-		int second = rand.nextInt(301);
-		int third = rand.nextInt(301);
-		int fourth = rand.nextInt(301);
+    public static void main(String[] args) {
+        Random rand = new Random();
+        int first = rand.nextInt(100);
+        int second = rand.nextInt(100);
+        int third = rand.nextInt(100);
+        int fourth = rand.nextInt(100);
 
-		System.out.printf("Greatest common divisor for numbers %s, %s, %s, and %s is %s", first, second, third, fourth, euclideanAlgorithm(euclideanAlgorithm(first, second), euclideanAlgorithm(third, fourth))); 
-	}
+        int greatestCommonDivisor = calculateGreatestCommonDivisor(calculateGreatestCommonDivisor(first, second), calculateGreatestCommonDivisor(third, fourth));
 
-	public static int euclideanAlgorithm(int first, int second) {
-		int buffer;
-		if (first < second) {
-			buffer = first;
-			first = second;
-			second = buffer;	
-		}
+        System.out.printf("Greatest common divisor for numbers %s, %s, %s, and %s is %s", first, second, third, fourth, greatestCommonDivisor);
+    }
 
-		while (first % second != 0) {
-			buffer = first;
-			first = second;
-			second = buffer % second;
-		}
-		return second;
-	}
+    public static int calculateGreatestCommonDivisor(int first, int second) {
+        int buffer;
+        if (first < second) {
+            buffer = first;
+            first = second;
+            second = buffer;
+        }
 
+        while (first % second != 0) {
+            buffer = first;
+            first = second;
+            second = buffer % second;
+        }
+        return second;
+    }
 }

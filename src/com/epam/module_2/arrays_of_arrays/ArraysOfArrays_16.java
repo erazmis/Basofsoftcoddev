@@ -8,7 +8,24 @@ import java.util.Scanner;
 
 public class ArraysOfArrays_16 {
 
-    public static int[][] oddSquare(int exp) {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter magic square order:");
+        int exp = scan.nextInt();
+        int[][] matrix;
+
+        if (exp % 2 != 0) {
+            matrix = createOddSquare(exp);
+        } else if (exp % 4 == 0) {
+            matrix = createEvenEvenSquare(exp);
+        } else matrix = createEvenOddSquare(exp);
+
+        printMagicSquare(matrix);
+
+//        checkSquare(matrix);
+    }
+
+    private static int[][] createOddSquare(int exp) {
         int[][] matrix = new int[exp * 2 - 1][exp * 2 - 1];
         int num = 1;
         for (int i = 0; i < exp; i++) {
@@ -60,8 +77,8 @@ public class ArraysOfArrays_16 {
         return completeMatrix;
     }
 
-    public static int[][] evenOddSquare(int exp) {
-        int[][] matrix1 = oddSquare(exp / 2);
+    public static int[][] createEvenOddSquare(int exp) {
+        int[][] matrix1 = createOddSquare(exp / 2);
 
         int[][] matrix2 = new int[exp / 2][exp / 2];
         int[][] matrix3 = new int[exp / 2][exp / 2];
@@ -117,7 +134,7 @@ public class ArraysOfArrays_16 {
         return matrix;
     }
 
-    public static int[][] evenEvenSquare(int exp) {
+    private static int[][] createEvenEvenSquare(int exp) {
         int[][] matrix = new int[exp][exp];
         int num = 1;
         for (int i = 0; i < exp; i++) {
@@ -150,55 +167,46 @@ public class ArraysOfArrays_16 {
         return matrix;
     }
 
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Введите порядок магического квадрата:");
-        int exp = scan.nextInt();
-        int[][] matrix;
-
-        if (exp % 2 != 0) {
-            matrix = oddSquare(exp);
-        } else if (exp % 4 == 0) {
-            matrix = evenEvenSquare(exp);
-        } else matrix = evenOddSquare(exp);
-
-        for (int i = 0; i < exp; i++) {
-            for (int j = 0; j < exp; j++) {
-                if (matrix[i][j] > 999) {
-                    System.out.print(" " + matrix[i][j]);
-                } else if (matrix[i][j] > 99) {
-                    System.out.print("  " + matrix[i][j]);
-                } else if (matrix[i][j] > 9) {
-                    System.out.print("   " + matrix[i][j]);
+    private static void printMagicSquare(int[][] square) {
+        for (int i = 0; i < square.length; i++) {
+            for (int j = 0; j < square.length; j++) {
+                if (square[i][j] > 999) {
+                    System.out.print(square[i][j] + " ");
+                } else if (square[i][j] > 99) {
+                    System.out.print(square[i][j] + "  ");
+                } else if (square[i][j] > 9) {
+                    System.out.print(square[i][j] + "   ");
                 } else {
-                    System.out.print("    " + matrix[i][j]);
+                    System.out.print(square[i][j] + "    ");
                 }
             }
-            System.out.println("");
-        }
-
-        int diagonal1Sum = 0;
-        int diagonal2Sum = 0;
-        int magicNum = exp * (int) (Math.pow(exp, 2) + 1) / 2;
-        boolean correctSquare = true;
-        for (int i = 0; i < exp; i++) {
-            diagonal1Sum += matrix[i][i];
-            diagonal2Sum += matrix[exp - 1 - i][i];
-            int lineSum = 0;
-            int columnSum = 0;
-            for (int j = 0; j < exp; j++) {
-                lineSum += matrix[i][j];
-                columnSum += matrix[j][i];
-            }
-            correctSquare = correctSquare && lineSum == magicNum && columnSum == magicNum;
-        }
-
-        correctSquare = correctSquare && diagonal1Sum == magicNum && diagonal2Sum == magicNum;
-
-        if (correctSquare) {
-            System.out.println("magic square is correct");
-        } else {
-            System.out.println("magic square is incorrect");
+            System.out.println();
         }
     }
+
+//    private static void checkSquare(int[][] square) {
+//        int diagonal1Sum = 0;
+//        int diagonal2Sum = 0;
+//        int magicNum = square.length * (int) (Math.pow(square.length, 2) + 1) / 2;
+//        boolean isSquareCorrect = true;
+//        for (int i = 0; i < square.length; i++) {
+//            diagonal1Sum += square[i][i];
+//            diagonal2Sum += square[square.length - 1 - i][i];
+//            int lineSum = 0;
+//            int columnSum = 0;
+//            for (int j = 0; j < square.length; j++) {
+//                lineSum += square[i][j];
+//                columnSum += square[j][i];
+//            }
+//            isSquareCorrect = isSquareCorrect && (lineSum == magicNum) && (columnSum == magicNum);
+//        }
+//
+//        isSquareCorrect = isSquareCorrect && (diagonal1Sum == magicNum) && (diagonal2Sum == magicNum);
+//
+//        if (isSquareCorrect) {
+//            System.out.println("magic square is correct");
+//        } else {
+//            System.out.println("magic square is incorrect");
+//        }
+//    }
 }

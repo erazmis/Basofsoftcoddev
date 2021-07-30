@@ -10,29 +10,70 @@ public class OneDimensionalArrays_3 {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        Random rand = new Random();
-        System.out.println("Введите размер массива:");
-        int len = scan.nextInt();
-        int[] array = new int[len];
-        int countNull = 0;
-        int countPosit = 0;
-        int countNegat = 0;
-        System.out.print("Массив:");
+        System.out.println("Enter array's length:");
+        int length = scan.nextInt();
+        int[] array = new int[length];
+        createArray(array);
+
+        printArray(array);
+
+        int negativeElements = calculateNegativeElements(array);
+        int nullElements = calculateNullElements(array);
+        int positiveElements = calculatePositiveElements(array);
+
+        System.out.printf("\nQuantity of negative elements: %s" +
+                        "\nQuantity of null elements: %s" +
+                        "\nQuantity of positive elements: %s",
+                negativeElements, nullElements, positiveElements);
+    }
+
+    private static void createArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = new Random().nextInt(21) - 10;
+        }
+    }
+
+    private static void printArray(int[] array) {
+        System.out.println("Array:");
 
         for (int i = 0; i < array.length; i++) {
-            array[i] = rand.nextInt(21) - 10;
             System.out.print(" " + array[i]);
-            if (array[i] == 0) {
-                countNull++;
-            } else if (array[i] > 0) {
-                countPosit++;
-            } else {
-                countNegat++;
+        }
+    }
+
+    private static int calculateNegativeElements(int[] array) {
+        int count = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < 0) {
+                count++;
             }
         }
-        System.out.printf("\nКоличество отрицательных элементов - %s. " +
-                "\nКоличество положительных элементов - %s. " +
-                "\nКоличество нулевых элементов - %s.", countNegat, countPosit, countNull);
 
+        return count;
+    }
+
+    private static int calculateNullElements(int[] array) {
+        int count = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == 0) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private static int calculatePositiveElements(int[] array) {
+        int count = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > 0) {
+                count++;
+            }
+        }
+
+        return count;
     }
 }

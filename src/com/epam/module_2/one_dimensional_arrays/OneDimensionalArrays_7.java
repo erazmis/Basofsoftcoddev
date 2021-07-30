@@ -7,32 +7,43 @@ import java.util.Random;
 
 public class OneDimensionalArrays_7 {
 
+    private static final int SIZE = 20;
+
     public static void main(String[] args) {
-        Random rand = new Random();
         int[] array = new int[20];
-        System.out.print("Исходный массив:");
+        createArray(array);
+
+        printArray(array);
+
+        int max = findMaxElement(array);
+        System.out.println("max(a[1] + a[2n], a[2] + a[2n - 1], ... , a[n] + a[n + 1]) = " + max +
+                "\nn = " + array.length / 2);
+    }
+
+    private static void createArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = new Random().nextInt(21);
+        }
+    }
+
+    private static void printArray(int[] array) {
+        System.out.println("Array:");
 
         for (int i = 0; i < array.length; i++) {
-            array[i] = rand.nextInt(21);
             System.out.print(" " + array[i]);
         }
+        System.out.println();
+    }
 
-        int[] array1 = new int[10];
-        System.out.print("\nМассив, сложенный вдвое:");
-        int j = 19;
+    private static int findMaxElement(int[] array) {
+        int max = array[1] + array[array.length - 1];
 
-        for (int i = 0; i < 10; i++) {
-            array1[i] = array[i] + array[j];
-            System.out.print(" " + array1[i]);
-            j--;
-        }
-
-        int max = -1;
-        for (int i = 0; i < 10; i++) {
-            if (array1[i] > max) {
-                max = array1[i];
+        for (int i = 1; i < array.length / 2; i++) {
+            if (max < array[i] + array[array.length - 1 - i]) {
+                max = array[i] + array[array.length - 1 - i];
             }
         }
-        System.out.print("\nМаксимум сложенного вдвое массива: " + max);
+
+        return max;
     }
 }

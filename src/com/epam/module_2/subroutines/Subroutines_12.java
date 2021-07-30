@@ -1,61 +1,65 @@
 /**
- * Даны натуральные числа К и N. Написать метод (методы) формирования массива А, элементами которого 
- * являются числа, сумма цифр которых равна К и которые не больше N. 
+ * Даны натуральные числа К и N. Написать метод (методы) формирования массива А, элементами которого
+ * являются числа, сумма цифр которых равна К и которые не больше N.
  */
 
 package com.epam.module_2.subroutines;
 
-import java.util.Random;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Subroutines_12 {
 
-	private static Random rand;
+    private static final Random rand = new Random();
 
-	public static void main(String[] args) {
-		rand = new Random();
-		int n = rand.nextInt(101) + 1;
-		int k = rand.nextInt(101) + n;
+    public static void main(String[] args) {
+        int sum = rand.nextInt(10) + 5;
+        int limit = rand.nextInt(200) + 10;
 
-		int[] array = arrayA(k, n);
-		
-		int sum = 0;
-		boolean limitOrLess = true;
-		for (int i = 0; i < array.length; i++) {
-			sum += array[i];
-			if (n < array[i]) {
-				limitOrLess = false;
-			}
-		}
-		System.out.printf("Sum of numbers is %s, limit is %s, array is " + Arrays.toString(array), k, n);
-	}
+        int[] array = new int[limit];
+        createArray(array, sum, limit);
 
-	public static int[] arrayA(int sum, int limit) {
-		rand = new Random();
-		int[] array = new int[100 + limit];
-		int numCount = 0;
-		int bufferSum = 0;	
-		for (int i = 1; i < array.length; i++) {
-			if (sum >= 0) {
-				bufferSum = sum;
-			}
+        array = cutArray(array);
 
-			sum -= array[i - 1];
-			
-			if (sum > 0) {
-				array[i] = rand.nextInt(limit);
-				numCount++;
-			}
-		}
-		array[numCount] = bufferSum;
-		
-		int[] result = new int[numCount];
-		int i = 0;
-		while (array[i + 1] > 0) {
-			result[i] = array[i + 1];
-			i++;
-		}
+        System.out.printf("Sum of numbers is %s, limit is %s, array is " + Arrays.toString(array), sum, limit);
+    }
 
-		return result;
-	}
+    private static int[] cutArray(int[] array) {
+        int length = calculateAmountOfElements(array);
+        int[] bufferArray = new int[length];
+
+        for (int i = 0; i < bufferArray.length; i++) {
+            bufferArray[i] = array[i];
+        }
+
+        return bufferArray;
+    }
+
+    private static void createArray(int[] array, int sum, int limit) {
+        int index = 0;
+        for (int i = 0; i < limit; i++) {
+            String numLine = Integer.toString(i);
+            int localSum = 0;
+            for (char ch : numLine.toCharArray()) {
+                localSum += ch - '0';
+            }
+
+            if (localSum == sum) {
+                array[index++] = i;
+            }
+        }
+    }
+
+    private static int calculateAmountOfElements(int[] array) {
+        int amount = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == 0) {
+                break;
+            }
+
+            amount++;
+        }
+
+        return amount;
+    }
 }

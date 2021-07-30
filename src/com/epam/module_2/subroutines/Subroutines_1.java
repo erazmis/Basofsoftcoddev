@@ -1,5 +1,5 @@
 /**
- * Написать методы для нахождения наибольшего общего делителя 
+ * Написать методы для нахождения наибольшего общего делителя
  * и наименьшего общего кратного двух натуральных чисел.
  */
 
@@ -9,32 +9,38 @@ import java.util.Random;
 
 public class Subroutines_1 {
 
-	public static void main(String[] args) {
-		Random rand = new Random();
+    public static void main(String[] args) {
+        Random rand = new Random();
 
-		int first = rand.nextInt(101);	
-		int second = rand.nextInt(101);
+        int first = rand.nextInt(101);
+        int second = rand.nextInt(101);
 
-		System.out.printf("Greatest common divisor for numbers %s and %s is %s, least common multiple for them is %s", first, second, euclideanAlgorithm(first, second), (first * second) / euclideanAlgorithm(first, second)); 	
-	}
+        int greatestCommonDivisor = calculateGreatestCommonDivisor(first, second);
+        int leastCommonMultiple = calculateLeastCommonMultiple(first, second);
 
-	public static int euclideanAlgorithm(int first, int second) {
-		int buffer;
+        System.out.printf("Greatest common divisor for numbers %s and %s is %s, " +
+                "least common multiple for them is %s", first, second, greatestCommonDivisor, leastCommonMultiple);
+    }
 
-		if (first < second) {
-			buffer = first;
-			first = second;
-			second = buffer;
-		}
+    public static int calculateGreatestCommonDivisor(int first, int second) {
+        int buffer;
 
-		while(first % second != 0) {
-			buffer = first;
-			first = second;
-			second = buffer % second;
-		}
+        if (first < second) {
+            buffer = first;
+            first = second;
+            second = buffer;
+        }
 
-		int greatestComDiv = second;
+        while (first % second != 0) {
+            buffer = first;
+            first = second;
+            second = buffer % second;
+        }
 
-		return greatestComDiv;
-	}
+        return second;
+    }
+
+    public static int calculateLeastCommonMultiple(int first, int second) {
+        return (first * second) / calculateGreatestCommonDivisor(first, second);
+    }
 }

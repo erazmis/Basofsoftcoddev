@@ -8,27 +8,41 @@ import java.util.Random;
 public class ArraysOfArrays_11 {
 
     public static void main(String[] args) {
+        int[][] matrix = new int[10][20];
+        createMatrix(matrix);
+
+        printMatrix(matrix);
+
+        printNumsOfLinesWithRepeatingOf5(matrix);
+    }
+
+    private static void createMatrix(int[][] matrix) {
         Random rand = new Random();
-        int[][] array = new int[10][20];
-        System.out.println("Матрица:");
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 20; j++) {
-                array[i][j] = rand.nextInt(16);
-                if (array[i][j] > 9) {
-                    System.out.print("  " + array[i][j]);
-                } else {
-                    System.out.print("   " + array[i][j]);
-                }
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = rand.nextInt(10);
             }
-            System.out.println("");
         }
+    }
 
-        System.out.println("Номера строк, в которых число 5 встречается три и более раз:");
-        for (int i = 0; i < 10; i++) {
+    private static void printMatrix(int[][] matrix) {
+        System.out.println("Мatrix:");
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print("   " + matrix[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    private static void printNumsOfLinesWithRepeatingOf5(int[][] matrix) {
+        System.out.print("Numbers (from 0) of lines, where number 5 is repeating 3 or more times:");
+        for (int i = 0; i < matrix.length; i++) {
             int count = 0;
-            for (int j = 0; j < 20; j++) {
-                if (array[i][j] == 5) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == 5) {
                     count++;
                 }
             }

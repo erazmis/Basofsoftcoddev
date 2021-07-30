@@ -13,22 +13,30 @@ public class ArraysOfArrays_5 {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Введите чётное число:");
+        System.out.println("Enter even number:");
         int n = scan.nextInt();
-        int[][] array = new int[n][n];
+        int[][] matrix = new int[n][n];
+        createMatrix(matrix);
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n - i; j++) {
-                array[i][j] = i + 1;
+        printMatrix(matrix);
+    }
+
+    private static void createMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length - i; j++) {
+                matrix[i][j] = i + 1;
             }
         }
+    }
 
-        System.out.println("Матрица:");
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print("  " + array[i][j]);
+    private static void printMatrix(int[][] matrix) {
+        System.out.println("Мatrix:");
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print("   " + matrix[i][j]);
             }
-            System.out.println(" ");
+            System.out.println();
         }
     }
 }

@@ -1,54 +1,69 @@
-/* Заданы два одномерных массива с различным количеством элементов и натуральное число k. Объединить их в 
-один  массив,  включив  второй  массив  между  k-м  и  (k+1)  -  м  элементами  первого,  при  этом  не  используя 
-дополнительный массив. */
+/**
+ * Заданы два одномерных массива с различным количеством элементов и натуральное число k.
+ * Объединить их в один  массив,  включив  второй  массив  между  k-м  и  (k+1)-м  элементами  первого,
+ * при  этом  не  используя дополнительный массив.
+ */
 
 package com.epam.module_2.one_dimensional_arrays_sorting;
 
+import java.util.Random;
 import java.util.Scanner;
-import java.lang.Math;
 
 public class OneDimensionalArraysSorting_1 {
 
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Введите размер первого массива:");
-		int a = scan.nextInt();
-		System.out.println("Введите размер второго массива:");
-		int b = scan.nextInt();
-		System.out.println("Введите индекс элемента второго массива, после которого нужно вставить первый массив (число должно быть меньше размера массива минимум на 1):");
-		int k = scan.nextInt();
-		int[] array1 = new int[a];
-		int[] array2 = new int[b];
-		int[] result = new int[a + b];
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter first array's length:");
+        int firstArrayLength = scan.nextInt();
+        System.out.println("Enter second array's length:");
+        int secondArrayLength = scan.nextInt();
+        System.out.printf("Enter second array's index, after which the second array should be inserted " +
+                "(index must be less than %s\n", secondArrayLength);
+        int index = scan.nextInt();
 
-		System.out.println("Первый массив:");
-		for (int i = 0; i < a; i++) {
-			array1[i] = 1;              // (int) (Math.random() * 10);
-			System.out.print("    " + array1[i]);
-		}
-		
-		System.out.println("\nВторой массив:");
-		for (int i = 0; i < b; i++) {
-			array2[i] = 2;             //(int) (Math.random() * 10);
-			System.out.print("    " + array2[i]);
-		}
-		
-		for (int i = 0; i <= k; i++) {
-			result[i] = array2[i];
-		}
-		
-		int u = 1;
-		for (int i : array1) {
-			result[k + u++] = i;
-		}
-		
-		for (int i = k + a + 1; i < b + a; i++) {
-			result[i] = array2[i - a];
-		}
+        int[] firstArray = new int[firstArrayLength];
+        int[] secondArray = new int[secondArrayLength];
+        int[] result = new int[firstArrayLength + secondArrayLength];
 
-		System.out.println("\nИтоговый массив;");
-		for (int i = 0; i < a + b; i++) {
-			System.out.print("    " + result[i]);
-		}
-	}
+        System.out.println("First array:");
+        createArray(firstArray);
+        printArray(firstArray);
+
+        System.out.println("Second array:");
+        createArray(secondArray);
+        printArray(secondArray);
+
+        System.out.println("Result array");
+        createResultArray(firstArray, secondArray, result, index);
+        printArray(result);
+    }
+
+    private static void createArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = new Random().nextInt(3);
+        }
+    }
+
+    private static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(" " + array[i]);
+        }
+        System.out.println();
+    }
+
+    private static int[] createResultArray(int[] firstArray, int[] secondArray, int[] result, int index) {
+        for (int i = 0; i <= index; i++) {
+            result[i] = secondArray[i];
+        }
+
+        for (int i = 0; i < firstArray.length; i++) {
+            result[i + index + 1] = firstArray[i];
+        }
+
+        for (int i = index + 1; i < secondArray.length; i++) {
+            result[firstArray.length + i] = secondArray[i];
+        }
+
+        return result;
+    }
 }

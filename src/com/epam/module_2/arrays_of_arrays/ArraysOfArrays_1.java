@@ -5,24 +5,42 @@ import java.util.Random;
 
 public class ArraysOfArrays_1 {
 
+    static int SIZE = 10;
+
     public static void main(String[] args) {
+        int[][] matrix = new int[SIZE][SIZE];
+        createMatrix(matrix);
+        printMatrix(matrix);
+
+        oddColumns(matrix);
+    }
+
+    private static void createMatrix(int[][] matrix) {
         Random rand = new Random();
-        int[][] array = new int[10][10];
-        System.out.println("Матрица:");
-
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                array[i][j] = rand.nextInt(10);
-                System.out.print("   " + array[i][j]);
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                matrix[i][j] = rand.nextInt(10);
             }
-            System.out.println(" ");
         }
+    }
 
-        System.out.println("Нечётные столбцы, у которых первый элемент больше последнего:");
-        for (int i = 0; i < 10; i += 2) {
-            if (array[0][i] > array[9][i]) {
-                for (int j = 0; j < 10; j++) {
-                    System.out.print(" " + array[j][i]);
+    private static void printMatrix(int[][] matrix) {
+        System.out.println("Маtrix:");
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.print("   " + matrix[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    private static void oddColumns(int[][] matrix) {
+        System.out.println("Odd columns with he first element greater than the last:");
+        for (int i = 0; i < matrix.length; i += 2) {
+            if (matrix[0][i] > matrix[9][i]) {
+                for (int j = 0; j < matrix[i].length; j++) {
+                    System.out.print(" " + matrix[j][i]);
                 }
                 System.out.println("\n");
             }

@@ -5,35 +5,65 @@ import java.util.Random;
 
 public class OneDimensionalArrays_4 {
 
+    private static final int SIZE = 10;
+
     public static void main(String[] args) {
-	    Random rand = new Random();
-	    int[] array = new int[10];
-        int indexMax = 10;
-        int indexMin = 10;
-        int max = -10;
-        int min = 10;
-        System.out.print("Mассив:");
+        int[] array = new int[SIZE];
+        createArray(array);
+
+        printArray(array);
+
+        int indexMin = findIndexOfMinElement(array);
+        int indexMax = findIndexOfMaxElement(array);
+
+        int buffer = array[indexMax];
+        array[indexMax] = array[indexMin];
+        array[indexMin] = buffer;
+
+        printArray(array);
+    }
+
+    private static void createArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = new Random().nextInt(21);
+        }
+    }
+
+    private static void printArray(int[] array) {
+        System.out.println("Array:");
+
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(" " + array[i]);
+        }
+
+        System.out.println();
+    }
+
+    private static int findIndexOfMinElement(int[] array) {
+        int min = array[0];
+        int indexMin = 0;
 
         for (int i = 0; i < 10; i++) {
-            array[i] = rand.nextInt(21) - 10;
-            System.out.print(" " + array[i]);
-            if (array[i] <= min) {
+            if (array[i] < min) {
                 min = array[i];
                 indexMin = i;
             }
-            if (array[i] >= max) {
+        }
+
+        return indexMin;
+    }
+
+    private static int findIndexOfMaxElement(int[] array) {
+        int max = array[0];
+        int indexMax = 0;
+
+        for (int i = 0; i < 10; i++) {
+            if (array[i] > max) {
                 max = array[i];
                 indexMax = i;
             }
         }
-        
-        array[indexMin] = max;
-        array[indexMax] = min;
 
-        System.out.print("\nНовый массив:");
-
-        for (int i = 0; i < 10; i++) {
-            System.out.print(" " + array[i]);
-        }
+        return indexMax;
     }
 }
