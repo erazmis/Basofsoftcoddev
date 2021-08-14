@@ -9,11 +9,11 @@ public class StringAsAnArrayOfCharacters_2 {
     public static void main(String[] args) {
         String str = "The task of defining what constitutes a \"word\" involves determining where one word ends and another word begins—in other words, identifying word boundaries. There are several ways to determine where the word boundaries of spoken language should be placed";
         System.out.println(str);
-        str = replaceWORDWithLETTER(str);
+        str = replaceWordWithLetter(str);
         System.out.println(str);
     }
 
-    private static String replaceWORDWithLETTER(String string) {
+    private static String replaceWordWithLetter(String string) {
         char[] ch = string.toCharArray();
         char[] result = new char[ch.length + calculateWORDs(ch) * 2];
 

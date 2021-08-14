@@ -66,7 +66,5 @@ public class StringAsAnArrayOfCharacters_5 {
                 break;
             }
         }
-
-
     }
 }

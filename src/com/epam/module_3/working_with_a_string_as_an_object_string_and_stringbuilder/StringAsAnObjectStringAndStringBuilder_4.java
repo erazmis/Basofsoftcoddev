@@ -1,3 +1,7 @@
+/**
+ * С помощью функции копирования и операции конкатенации составить из частей слова “информатика” слово “торт”.
+ */
+
 package com.epam.module_3.working_with_a_string_as_an_object_string_and_stringbuilder;
 
 public class StringAsAnObjectStringAndStringBuilder_4 {
