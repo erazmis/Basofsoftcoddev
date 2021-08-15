@@ -9,7 +9,7 @@ public class Text {
 
     private String text;
 
-    public Text(Sentence ... sentences) {
+    public Text(Sentence... sentences) {
         StringBuilder line = new StringBuilder(sentences[0].toString());
 
         for (int i = 0; i < sentences.length; i++) {

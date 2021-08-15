@@ -14,14 +14,14 @@ public class Counter {
 
     public Counter() {
         count = 0;
-        range = new int[] {0, 10};
+        range = new int[]{0, 10};
     }
 
     public Counter(int count, int min, int max) {
         this();
 
         if (min <= max) {
-            range = new int[] {min, max};
+            range = new int[]{min, max};
         } else {
             System.out.println("<The range (" + min + ", " + max + ") is impossible. It is created by default>");
         }
@@ -63,12 +63,12 @@ public class Counter {
     }
 
     public void setRange() {
-        range = new int[] {0, 10};
+        range = new int[]{0, 10};
     }
 
     public void setRange(int min, int max) {
         if (count >= min && count <= max) {
-            range = new int[] {min, max};
+            range = new int[]{min, max};
         }
     }
 

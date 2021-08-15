@@ -2,7 +2,6 @@
 package com.epam.module_1.branches;
 
 import java.util.Scanner;
-import java.lang.Math;
 
 public class Branches_2 {
 
