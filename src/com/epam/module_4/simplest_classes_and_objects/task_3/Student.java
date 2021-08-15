@@ -6,17 +6,19 @@
 
 package com.epam.module_4.simplest_classes_and_objects.task_3;
 
+import java.util.Arrays;
+
 public class Student {
 
     private String surname;
     private String initials;
     private int groupNumber;
-    private double[] academicPerformance;
+    private int[] academicPerformance;
 
     public Student() {
     }
 
-    public Student(String surname, String initials, int groupNumber, double[] academicPerformance) {
+    public Student(String surname, String initials, int groupNumber, int[] academicPerformance) {
         this.surname = surname;
         this.initials = initials;
         this.groupNumber = groupNumber;
@@ -27,25 +29,25 @@ public class Student {
         return surname;
     }
 
-    public String highPerfomingStudents(Student[] students) {
-        StringBuilder listOfStudents = new StringBuilder("High performing students: ");
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-        boolean isHighPerfomance = true;
+    public String highPerfomingStudents(Student[] students) {
+        StringBuilder listOfStudents = new StringBuilder("High performing students:\n");
 
         for (int i = 0; i < students.length; i++) {
+            boolean isHighPerfomance = true;
+
             for (int j = 0; j < students[i].academicPerformance.length; j++) {
-                isHighPerfomance = isHighPerfomance && (students[i].academicPerformance[j] > 8);
+                isHighPerfomance = (isHighPerfomance && (students[i].academicPerformance[j] > 8));
             }
             if (isHighPerfomance) {
-                listOfStudents.append(students[i].surname + ", ");
+                listOfStudents.append(students[i].surname + ", group " + students[i].groupNumber + "\n");
             }
         }
 
         return listOfStudents.toString();
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public String getInitials() {
@@ -64,11 +66,17 @@ public class Student {
         this.groupNumber = groupNumber;
     }
 
-    public double[] getAcademicPerformance() {
+    public int[] getAcademicPerformance() {
         return academicPerformance;
     }
 
-    public void setAcademicPerformance(double[] academicPerformance) {
+    public void setAcademicPerformance(int[] academicPerformance) {
         this.academicPerformance = academicPerformance;
+    }
+
+    @Override
+    public String toString() {
+        return surname + ", " + initials + ", group " + groupNumber +
+                ", academic performance: " + Arrays.toString(academicPerformance);
     }
 }

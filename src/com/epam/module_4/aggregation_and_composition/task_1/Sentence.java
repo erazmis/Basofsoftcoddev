@@ -4,7 +4,7 @@ public class Sentence {
 
     private String sentence;
 
-    public Sentence(Word ... words) {
+    public Sentence(Word... words) {
         StringBuilder line = new StringBuilder(words[0].toString());
 
         for (int i = 0; i < words.length; i++) {

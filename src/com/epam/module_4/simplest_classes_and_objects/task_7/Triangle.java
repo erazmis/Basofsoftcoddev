@@ -1,7 +1,7 @@
 /**
  * Описать класс, представляющий треугольник. Предусмотреть методы для создания объектов, вычисления
  * площади, периметра и точки пересечения медиан.
- *
+ * <p>
  * I don't use Math.hypot(), 'cause it's slower, than Math.sqrt(Math.pow(), Math.pow())
  */
 
@@ -55,7 +55,7 @@ public class Triangle {
         return sideAB + sideBC + sideCA;
     }
 
-    public String medianIntersectionPoint(){
+    public String medianIntersectionPoint() {
         double middleOfSideBCX = (pointCX + pointBX) - (double) (Math.abs(pointBX - pointCX) / 2);
         double middleOfSideBCY = (pointCY + pointBY) - (double) (Math.abs(pointBY - pointCY) / 2);
         double medianIntersectionPointX = (pointAX + middleOfSideBCX) - Math.abs(pointAX - middleOfSideBCX) / 3;

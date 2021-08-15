@@ -52,6 +52,38 @@ public class Train {
                 "\nDeparture time: " + departureTime;
     }
 
+    public void sortByDestination(Train[] trains) {
+        Train buffer;
+
+        for (int i = 1; i < trains.length; i++) {
+            if (trains[i].destination.equalsIgnoreCase(trains[i - 1].destination)) {
+                int index = 0;
+                while (trains[i].departureTime.charAt(index) == trains[i - 1].departureTime.charAt(index)) {
+                    index++;
+                }
+                if (trains[i].departureTime.charAt(index) < trains[i - 1].departureTime.charAt(index)) {
+                    buffer = trains[i];
+                    trains[i] = trains[i - 1];
+                    trains[i - 1] = buffer;
+                }
+            } else {
+                int index = 0;
+                while (trains[i].destination.charAt(index) == trains[i - 1].destination.charAt(index)) {
+                    index++;
+                }
+                if (trains[i].destination.charAt(index) < trains[i - 1].destination.charAt(index)) {
+                    buffer = trains[i];
+                    trains[i] = trains[i - 1];
+                    trains[i - 1] = buffer;
+
+                    if (i > 1) {
+                        i -= 2;
+                    }
+                }
+            }
+        }
+    }
+
     public String getDestination() {
         return destination;
     }
@@ -74,5 +106,15 @@ public class Train {
 
     public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
+    }
+
+    public String toString(Train[] trains) {
+        StringBuilder str = new StringBuilder();
+
+        for (int i = 0; i < trains.length; i++) {
+            str.append(trains[i].info() + "\n\n");
+        }
+
+        return str.toString();
     }
 }
