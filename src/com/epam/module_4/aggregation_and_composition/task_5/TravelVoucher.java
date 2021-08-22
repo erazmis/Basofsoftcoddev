@@ -8,42 +8,48 @@ package com.epam.module_4.aggregation_and_composition.task_5;
 
 public class TravelVoucher {
 
-    private String type;
-    private String transport;
-    private String typeOfFood;
+    private TypeOfTrip typeOfTrip;
+    private TypeOfTransport transport;
+    private TypeOfFood typeOfFood;
     private int days;
 
-    public TravelVoucher() {
-    }
-
-    public TravelVoucher(String type, String transport, String formOfFood, int days) {
-        this.type = type;
-        this.transport = transport;
-        this.typeOfFood = formOfFood;
+    public TravelVoucher(String typeOfTrip, String transport, String typeOfFood, int days) {
+        this.typeOfTrip = TypeOfTrip.valueOf(typeOfTrip
+                .replaceAll("\\W", "")
+                .strip()
+                .toUpperCase());
+        this.transport = TypeOfTransport.valueOf(transport
+                .replaceAll("\\W", "")
+                .strip()
+                .toUpperCase());
+        this.typeOfFood = TypeOfFood.valueOf(typeOfFood
+                .replaceAll("\\W", "")
+                .strip()
+                .toUpperCase());
         this.days = days;
     }
 
-    public String getType() {
-        return type;
+    public TypeOfTrip getTypeOfTrip() {
+        return typeOfTrip;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeOfTrip(TypeOfTrip typeOfTrip) {
+        this.typeOfTrip = typeOfTrip;
     }
 
-    public String getTransport() {
+    public TypeOfTransport getTransport() {
         return transport;
     }
 
-    public void setTransport(String transport) {
+    public void setTransport(TypeOfTransport transport) {
         this.transport = transport;
     }
 
-    public String getTypeOfFood() {
+    public TypeOfFood getTypeOfFood() {
         return typeOfFood;
     }
 
-    public void setTypeOfFood(String typeOfFood) {
+    public void setTypeOfFood(TypeOfFood typeOfFood) {
         this.typeOfFood = typeOfFood;
     }
 
@@ -56,9 +62,37 @@ public class TravelVoucher {
     }
 
     public String toString() {
-        return "Voucher type: " + type +
+        return "Voucher type: " + typeOfTrip +
                 "\nDays: " + days +
                 "\nTransport: " + transport +
                 "\ntypeOfFood: " + typeOfFood;
     }
+}
+
+enum TypeOfFood {
+    BREAKFASTONLY,
+    HALFBOARD,
+    HALFBOARDPLUS,
+    FULLBOARD,
+    FULLBOARDPLUS,
+    ALLINCLUSIVE,
+    ULTRAALLINCLUSIVE
+}
+
+enum TypeOfTransport {
+    TRAIN,
+    AIRPLANE,
+    BUS,
+    BICYCLE,
+    SHIP,
+    CRUISESHIP
+}
+
+enum TypeOfTrip {
+    REST,
+    EXCURSION,
+    RECOVERY,
+    TREATMENT,
+    SHOPPING,
+    CRUISE
 }

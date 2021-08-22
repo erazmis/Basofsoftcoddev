@@ -8,8 +8,8 @@ package com.epam.module_4.simplest_classes_and_objects.task_2;
 
 public class Test2 {
 
-    protected String name;
-    protected String surname;
+    private String name;
+    private String surname;
 
     public Test2(String name, String surname) {
         this.name = name;

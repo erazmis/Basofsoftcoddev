@@ -14,33 +14,45 @@ package com.epam.module_4.simplest_classes_and_objects.task_9;
 
 public class AboutBooks {
 
-    Book[] books;
+    private Book[] books;
 
     public AboutBooks(Book[] books) {
         this.books = books;
     }
 
-    public void printBooksByAuthor(String author) {
+    public String booksByAuthor(String author) {
+        StringBuilder answer = new StringBuilder();
+
         for (Book book : books) {
             if (book.getAuthors().matches("(.*)" + author + "(.*)")) {
-                System.out.println(book.getTitle());
+                answer.append(book.getTitle() + ", ");
             }
         }
+
+        return answer.toString();
     }
 
-    public void printBooksByPublishingHouse(String publishingHouse) {
+    public String booksByPublishingHouse(String publishingHouse) {
+        StringBuilder answer = new StringBuilder();
+
         for (int i = 0; i < books.length; i++) {
             if (books[i].getPublishingHouse().equalsIgnoreCase(publishingHouse)) {
-                System.out.println(books[i].getTitle());
+                answer.append(books[i].getTitle() + ", ");
             }
         }
+
+        return answer.toString();
     }
 
-    public void printBooksAfterYear(int year) {
+    public String booksAfterYear(int year) {
+        StringBuilder answer = new StringBuilder();
+
         for (int i = 0; i < books.length; i++) {
             if (books[i].getYearOfPublishing() > year) {
-                System.out.println(books[i].getTitle());
+                answer.append(books[i].getTitle() + ", ");
             }
         }
+
+        return answer.toString();
     }
 }

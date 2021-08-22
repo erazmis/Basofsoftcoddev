@@ -28,7 +28,7 @@ public class Main {
 
         printStudents(students);
 
-        System.out.println(new Student().highPerfomingStudents(students));
+        System.out.println("High performing students:\n" + Students.highPerfomingStudents(students));
     }
 
     private static int[] createPerformance() {
@@ -42,7 +42,7 @@ public class Main {
 
     private static void printStudents(Student[] students) {
         for (int i = 0; i < students.length; i++) {
-            System.out.println(students[i].toString());
+            System.out.println(students[i]);
         }
     }
 }

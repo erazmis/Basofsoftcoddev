@@ -7,14 +7,14 @@ package com.epam.module_4.aggregation_and_composition.task_3;
 
 public class Country {
 
-    Region[] regions;
-    private String capital;
+    private Region[] regions;
+    private City capital;
 
     public Country() {
     }
 
-    public Country(String capital, Region[] regions) {
-        this.capital = capital;
+    public Country(String capital, Region ... regions) {
+        this.capital = new City(capital);
         this.regions = regions;
     }
 
@@ -29,7 +29,7 @@ public class Country {
     }
 
     public String getCountryCapital() {
-        return capital;
+        return capital.toString();
     }
 
     public String getRegionCenters() {

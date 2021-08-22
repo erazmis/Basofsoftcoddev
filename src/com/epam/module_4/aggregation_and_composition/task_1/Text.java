@@ -7,36 +7,120 @@ package com.epam.module_4.aggregation_and_composition.task_1;
 
 public class Text {
 
-    private String text;
+    private Sentence[] content;
+    private Word title;
 
-    public Text(Sentence... sentences) {
-        StringBuilder line = new StringBuilder(sentences[0].toString());
+    public Text() {
+    }
+
+    public Text(Word title, Sentence ... text) {
+        this.content = text;
+        this.title = title;
+    }
+
+    public Text(String title, String str) {
+        this.title = new Word(title);
+
+        String[] splitByDot = str.split("\\.");
+        content = new Sentence[splitByDot.length];
+
+        for (int i = 0; i < content.length; i++) {
+            String[] splitBySpace = splitByDot[i].stripLeading().split(" ");
+            Word[] words = new Word[splitBySpace.length];
+
+            for (int j = 0; j < words.length; j++) {
+                words[j] = new Word(splitBySpace[j]);
+            }
+            content[i] = new Sentence(words);
+        }
+    }
+
+    public Text(String content) {
+        String[] splitByDot = content.split("\\.");
+        Sentence[] sentences = new Sentence[splitByDot.length];
 
         for (int i = 0; i < sentences.length; i++) {
-            line.append(" " + sentences[i].toString());
+            String[] splitBySpace = splitByDot[i].stripLeading().split(" ");
+            Word[] words = new Word[splitBySpace.length];
+
+            for (int j = 0; j < words.length; j++) {
+                words[j] = new Word(splitBySpace[j]);
+            }
+            sentences[i] = new Sentence(words);
         }
 
-        text = line.append(". ").toString().stripTrailing();
+        this.content = sentences;
     }
 
-    public void addTitle(String title) {
-        text = title + "\n" + text;
+    public void addContent(String str) {
+        String[] strings = str.split("\\.");
+        Sentence[] adding = new Sentence[strings.length];
+
+        for (int i = 0; i < adding.length; i++) {
+            adding[i] = new Sentence(strings[i]);
+        }
+
+        Sentence[] newText = new Sentence[content.length + adding.length];
+        for (int i = 0; i < content.length; i++) {
+            newText[i] = content[i];
+        }
+
+        for (int i = 0; i < adding.length; i++) {
+            newText[content.length + i] = adding[i];
+        }
+
+        content = newText;
     }
 
-    public void addText(String text) {
-        this.text = " " + text;
+    public void addContent(Sentence ... sentences) {
+        Sentence[] newText = new Sentence[content.length + sentences.length];
+        for (int i = 0; i < content.length; i++) {
+            newText[i] = content[i];
+        }
+
+        for (int i = 0; i < sentences.length; i++) {
+            newText[content.length + i] = sentences[i];
+        }
+
+        content = newText;
     }
 
-    public void addText(Text text) {
-        this.text = " " + text.toString();
+    public Sentence[] getContent() {
+        return content;
     }
 
-    public void printText() {
-        System.out.println(text);
+    public String getContentAsString() {
+        String[] strs = new String[content.length];
+
+        for (int i = 0; i < content.length; i++) {
+            strs[i] = content[i].toString();
+        }
+
+        return String.join(" ", strs);
+
+    }
+
+    public void setContent(Sentence[] content) {
+        this.content = content;
+    }
+
+    public Word getTitle() {
+        return title;
+    }
+
+    public void setTitle(Word title) {
+        this.title = title;
     }
 
     @Override
     public String toString() {
-        return text;
+        String[] strs = new String[content.length];
+
+        for (int i = 0; i < content.length; i++) {
+            strs[i] = content[i].toString();
+        }
+
+        return title + "\n" +
+                String.join(" ", strs);
     }
 }

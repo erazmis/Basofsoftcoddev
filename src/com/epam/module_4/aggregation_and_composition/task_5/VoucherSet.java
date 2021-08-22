@@ -8,19 +8,25 @@ package com.epam.module_4.aggregation_and_composition.task_5;
 
 public class VoucherSet {
 
-    TravelVoucher[] vouchers;
+    private TravelVoucher[] vouchers;
 
-    public VoucherSet(TravelVoucher[] vouchers) {
+    public VoucherSet(TravelVoucher ... vouchers) {
         this.vouchers = vouchers;
     }
 
     public VoucherSet() {
     }
 
-    public TravelVoucher[] selectByType(String... type) {
+    public VoucherSet selectByTypeOfTrip(String... types) {
+        for (int i = 0; i < types.length; i++) {
+            types[i] = types[i]
+                    .replaceAll("\\W", "")
+                    .strip()
+                    .toUpperCase();
+        }
         int number = 0;
         for (int i = 0; i < vouchers.length; i++) {
-            if (contains(type, vouchers[i].getType())) {
+            if (contains(types, vouchers[i].getTypeOfTrip().name())) {
                 number++;
             }
         }
@@ -28,18 +34,24 @@ public class VoucherSet {
         TravelVoucher[] selected = new TravelVoucher[number];
         int index = 0;
         for (int i = 0; i < vouchers.length; i++) {
-            if (contains(type, vouchers[i].getType())) {
+            if (contains(types, vouchers[i].getTypeOfTrip().name())) {
                 selected[index++] = vouchers[i];
             }
         }
 
-        return selected;
+        return new VoucherSet(selected);
     }
 
-    public TravelVoucher[] selectByTransport(String... transport) {
+    public VoucherSet selectByTransport(String... transport) {
+        for (int i = 0; i < transport.length; i++) {
+            transport[i] = transport[i]
+                    .replaceAll("\\W", "")
+                    .strip()
+                    .toUpperCase();
+        }
         int number = 0;
         for (int i = 0; i < vouchers.length; i++) {
-            if (contains(transport, vouchers[i].getTransport())) {
+            if (contains(transport, vouchers[i].getTransport().name())) {
                 number++;
             }
         }
@@ -47,18 +59,25 @@ public class VoucherSet {
         TravelVoucher[] selected = new TravelVoucher[number];
         int index = 0;
         for (int i = 0; i < vouchers.length; i++) {
-            if (contains(transport, vouchers[i].getTransport())) {
+            if (contains(transport, vouchers[i].getTransport().name())) {
                 selected[index++] = vouchers[i];
             }
         }
 
-        return selected;
+        return new VoucherSet(selected);
     }
 
-    public TravelVoucher[] selectByTypeOfFood(String... type) {
+    public VoucherSet selectByTypeOfFood(String... types) {
+        for (int i = 0; i < types.length; i++) {
+            types[i] = types[i]
+                    .replaceAll("\\W", "")
+                    .strip()
+                    .toUpperCase();
+        }
+
         int number = 0;
         for (int i = 0; i < vouchers.length; i++) {
-            if (contains(type, vouchers[i].getType())) {
+            if (contains(types, vouchers[i].getTypeOfFood().name())) {
                 number++;
             }
         }
@@ -66,19 +85,25 @@ public class VoucherSet {
         TravelVoucher[] selected = new TravelVoucher[number];
         int index = 0;
         for (int i = 0; i < vouchers.length; i++) {
-            if (contains(type, vouchers[i].getType())) {
+            if (contains(types, vouchers[i].getTypeOfFood().name())) {
                 selected[index++] = vouchers[i];
             }
         }
 
-        return selected;
+        return new VoucherSet(selected);
     }
 
-    public void sortByTransport(String... transport) {
+    public VoucherSet sortByTypeOfTrip(String ... types) {
+        for (int i = 0; i < types.length; i++) {
+            types[i] = types[i]
+                    .replaceAll("\\W", "")
+                    .strip()
+                    .toUpperCase();
+        }
         TravelVoucher buffer;
 
         for (int i = 1; i < vouchers.length; i++) {
-            if (contains(transport, vouchers[i].getTransport()) && !contains(transport, vouchers[i - 1].getTransport())) {
+            if (contains(types, vouchers[i].getTypeOfTrip().name()) && !contains(types, vouchers[i - 1].getTypeOfTrip().name())) {
                 buffer = vouchers[i];
                 vouchers[i] = vouchers[i - 1];
                 vouchers[i - 1] = buffer;
@@ -87,9 +112,34 @@ public class VoucherSet {
                 }
             }
         }
+
+        return new VoucherSet(vouchers);
     }
 
-    public void sortByDays() {
+    public VoucherSet sortByTransport(String... transport) {
+        for (int i = 0; i < transport.length; i++) {
+            transport[i] = transport[i]
+                    .replaceAll("\\W", "")
+                    .strip()
+                    .toUpperCase();
+        }
+        TravelVoucher buffer;
+
+        for (int i = 1; i < vouchers.length; i++) {
+            if (contains(transport, vouchers[i].getTransport().name()) && !contains(transport, vouchers[i - 1].getTransport().name())) {
+                buffer = vouchers[i];
+                vouchers[i] = vouchers[i - 1];
+                vouchers[i - 1] = buffer;
+                if (i > 1) {
+                    i -= 2;
+                }
+            }
+        }
+
+        return new VoucherSet(vouchers);
+    }
+
+    public VoucherSet sortByDays() {
         TravelVoucher buffer;
 
         for (int i = 1; i < vouchers.length; i++) {
@@ -102,9 +152,11 @@ public class VoucherSet {
                 }
             }
         }
+
+        return new VoucherSet(vouchers);
     }
 
-    public void sortByDays(int days) {
+    public VoucherSet sortByDays(int days) {
         TravelVoucher buffer;
 
         for (int i = 1; i < vouchers.length; i++) {
@@ -117,9 +169,11 @@ public class VoucherSet {
                 }
             }
         }
+
+        return new VoucherSet(vouchers);
     }
 
-    public void sortByDays(int minimum, int maximum) {
+    public VoucherSet sortByDays(int minimum, int maximum) {
         TravelVoucher buffer;
 
         for (int i = 1; i < vouchers.length; i++) {
@@ -145,13 +199,21 @@ public class VoucherSet {
                 break;
             }
         }
+
+        return new VoucherSet(vouchers);
     }
 
-    public void sortByTypeOfFood(String... type) {
+    public VoucherSet sortByTypeOfFood(String... types) {
+        for (int i = 0; i < types.length; i++) {
+            types[i] = types[i]
+                    .replaceAll("\\W", "")
+                    .strip()
+                    .toUpperCase();
+        }
         TravelVoucher buffer;
 
         for (int i = 1; i < vouchers.length; i++) {
-            if (contains(type, vouchers[i].getType()) && !contains(type, vouchers[i - 1].getType())) {
+            if (contains(types, vouchers[i].getTypeOfFood().name()) && !contains(types, vouchers[i - 1].getTypeOfFood().name())) {
                 buffer = vouchers[i];
                 vouchers[i] = vouchers[i - 1];
                 vouchers[i - 1] = buffer;
@@ -160,6 +222,8 @@ public class VoucherSet {
                 }
             }
         }
+
+        return new VoucherSet(vouchers);
     }
 
     private boolean contains(String[] strings, String element) {

@@ -7,14 +7,14 @@ package com.epam.module_4.aggregation_and_composition.task_3;
 
 public class Region {
 
-    District[] districts;
-    private String regionCenter;
+    private District[] districts;
+    private City regionCenter;
 
     public Region() {
     }
 
-    public Region(String regionCenter, District[] districts) {
-        this.regionCenter = regionCenter;
+    public Region(String regionCenter, District ... districts) {
+        this.regionCenter = new City(regionCenter);
         this.districts = districts;
     }
 
@@ -29,6 +29,8 @@ public class Region {
     }
 
     public String getRegionCenter() {
-        return regionCenter;
+        return regionCenter.toString();
     }
+
+
 }

@@ -14,17 +14,24 @@ class Subroutines_7 {
 
     private static int calculateSumOfFactorialsOfOddNumbers(int begin, int end) {
         int sumFactorials = 0;
+        int factorial;
 
         for (int i = begin; i <= end; i += 2) {
-            int factorial = 1;
-
-            for (int j = i; j > 0; j--) {
-                factorial *= j;
-            }
+            factorial = calculateFactorial(i);
 
             sumFactorials += factorial;
         }
 
         return sumFactorials;
+    }
+
+    private static int calculateFactorial(int i) {
+        int factorial = 1;
+
+        for (int j = i; j > 0; j--) {
+            factorial *= j;
+        }
+
+        return factorial;
     }
 }

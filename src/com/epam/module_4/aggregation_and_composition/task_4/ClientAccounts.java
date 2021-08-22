@@ -8,9 +8,7 @@ package com.epam.module_4.aggregation_and_composition.task_4;
 
 public class ClientAccounts {
 
-    Account[] accounts;
-
-    public void sortAccountsBySum(Account[] accounts) {
+    public static void sortAccountsBySum(Account... accounts) {
         int buffer;
         for (int i = 1; i < accounts.length; i++) {
             if (accounts[i].getSum() < accounts[i - 1].getSum()) {
@@ -24,7 +22,7 @@ public class ClientAccounts {
         }
     }
 
-    public long totalAmount() {
+    public static long totalAmount(Account... accounts) {
         long amount = 0;
 
         for (int i = 0; i < accounts.length; i++) {
@@ -36,7 +34,7 @@ public class ClientAccounts {
         return amount;
     }
 
-    public long negativeAmount() {
+    public static long negativeAmount(Account... accounts) {
         long amount = 0;
 
         for (int i = 0; i < accounts.length; i++) {
@@ -48,7 +46,7 @@ public class ClientAccounts {
         return amount;
     }
 
-    public long positiveAmount() {
+    public static long positiveAmount(Account... accounts) {
         long amount = 0;
 
         for (int i = 0; i < accounts.length; i++) {
@@ -60,22 +58,20 @@ public class ClientAccounts {
         return amount;
     }
 
-    public Account getAccountByNumber(int number) {
+    public static Account getAccountByNumber(int number, Account... accounts) {
         for (int i = 0; i < accounts.length; i++) {
             if (accounts[i].getAccountNumber() == number) {
                 return accounts[i];
             }
         }
-        return new Account();
+        return null;
     }
 
-    public void blockAccount(int number) {
-        Account account = getAccountByNumber(number);
-        account.setBlocked(true);
+    public static void blockAccount(int number) {
+        getAccountByNumber(number).setBlocked(true);
     }
 
-    public void unblockAccount(int number) {
-        Account account = getAccountByNumber(number);
-        account.setBlocked(false);
+    public static void unblockAccount(int number) {
+        getAccountByNumber(number).setBlocked(false);
     }
 }

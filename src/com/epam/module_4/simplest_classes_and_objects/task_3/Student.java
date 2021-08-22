@@ -33,23 +33,6 @@ public class Student {
         this.surname = surname;
     }
 
-    public String highPerfomingStudents(Student[] students) {
-        StringBuilder listOfStudents = new StringBuilder("High performing students:\n");
-
-        for (int i = 0; i < students.length; i++) {
-            boolean isHighPerfomance = true;
-
-            for (int j = 0; j < students[i].academicPerformance.length; j++) {
-                isHighPerfomance = (isHighPerfomance && (students[i].academicPerformance[j] > 8));
-            }
-            if (isHighPerfomance) {
-                listOfStudents.append(students[i].surname + ", group " + students[i].groupNumber + "\n");
-            }
-        }
-
-        return listOfStudents.toString();
-    }
-
     public String getInitials() {
         return initials;
     }

@@ -20,7 +20,7 @@ public class Main {
         trains[0] = new Train("Grodno", 123, "12:56");
         trains[1] = new Train("Vitebsk", 432, "22:32");
         trains[2] = new Train("Vitebsk", 639, "09:29");
-        trains[3] = new Train("Pinsk", 76, "11:50");
+        trains[3] = new Train("Brest", 76, "11:50");
         trains[4] = new Train("Polotsk", 66, "15:48");
 
         train.sortByTrainNumber(trains);

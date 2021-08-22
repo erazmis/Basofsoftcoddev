@@ -12,23 +12,29 @@
 
 package com.epam.module_4.simplest_classes_and_objects.task_10;
 
+import java.util.Arrays;
+
 public class Airline {
 
     private String destination;
-    private int flightNumber;
+    private String flightNumber;
     private String aircraftType;
     private String departureTime;
-    private String daysOfWeek;
+    private Day[] daysOfWeek;
 
     public Airline() {
     }
 
-    public Airline(String destination, int flightNumber, String aircraftType, String departureTime, String daysOfWeek) {
+    public Airline(String destination, String flightNumber, String aircraftType, String departureTime, String ... daysOfWeek) {
         this.destination = destination;
         this.flightNumber = flightNumber;
         this.aircraftType = aircraftType;
         this.departureTime = departureTime;
-        this.daysOfWeek = daysOfWeek;
+
+        this.daysOfWeek = new Day[daysOfWeek.length];
+        for (int i = 0; i < daysOfWeek.length; i++) {
+            this.daysOfWeek[i] = Day.valueOf(daysOfWeek[i].toUpperCase());
+        }
     }
 
     public String getDestination() {
@@ -39,11 +45,11 @@ public class Airline {
         this.destination = destination;
     }
 
-    public int getFlightNumber() {
+    public String getFlightNumber() {
         return flightNumber;
     }
 
-    public void setFlightNumber(int flightNumber) {
+    public void setFlightNumber(String flightNumber) {
         this.flightNumber = flightNumber;
     }
 
@@ -63,19 +69,30 @@ public class Airline {
         this.departureTime = departureTime;
     }
 
-    public String getDaysOfWeek() {
+    public Day[] getDaysOfWeek() {
         return daysOfWeek;
     }
 
-    public void setDaysOfWeek(String daysOfWeek) {
+    public void setDaysOfWeek(Day[] daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
     }
 
     @Override
     public String toString() {
         return "Destination: " + destination +
-                "\nDeparture time: " + daysOfWeek + ", " + departureTime +
+                "\nDeparture time: " + Arrays.toString(daysOfWeek) + ", " + departureTime +
                 "\nFlight number: " + flightNumber +
                 "\nAircraft type: " + aircraftType;
     }
 }
+
+enum Day {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY,
+    SUNDAY
+}
+

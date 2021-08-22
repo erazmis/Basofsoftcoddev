@@ -8,15 +8,39 @@ package com.epam.module_4.aggregation_and_composition.task_3;
 public class City {
 
     private int area;
+    private String name;
+
+    public City(int area, String name) {
+        this.area = area;
+        this.name = name;
+    }
+
+    public City(String name) {
+        this.name = name;
+    }
 
     public City() {
     }
 
-    public City(int area) {
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
         this.area = area;
     }
 
-    public int getCityArea() {
-        return area;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "City: " + name +
+                "\nArea:" + area;
     }
 }

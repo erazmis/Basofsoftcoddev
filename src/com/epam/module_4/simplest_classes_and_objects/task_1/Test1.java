@@ -26,9 +26,8 @@ public class Test1 {
     public int max() {
         if (first > second) {
             return first;
-        } else {
-            return second;
         }
+        return second;
     }
 
     public int getFirst() {

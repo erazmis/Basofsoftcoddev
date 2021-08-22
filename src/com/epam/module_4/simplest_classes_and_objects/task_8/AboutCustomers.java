@@ -15,31 +15,39 @@ import java.util.Arrays;
 
 public class AboutCustomers {
 
-    Customer[] customers;
-    String[] listOfCustomers;
+    private Customer[] customers;
 
     public AboutCustomers(Customer[] customers) {
         this.customers = customers;
-        listOfCustomers = new String[customers.length];
-        for (int i = 0; i < listOfCustomers.length; i++) {
-            listOfCustomers[i] = customers[i].getLastName() + " " + customers[i].getFirstName() + " " + customers[i].getPatronymic();
-        }
     }
 
-    public void printCustomersInAlphabetOrder() {
+    public String customersInAlphabetOrder() {
+        String[] listOfCustomers = new String[customers.length];
+
+        for (int i = 0; i < listOfCustomers.length; i++) {
+            listOfCustomers[i] = customers[i].getLastName() + " " + customers[i].getFirstName() + " " + customers[i].getMiddleName();
+        }
+
         Arrays.sort(listOfCustomers);
-        System.out.println("Customers:");
+
+        StringBuilder sortedCustomers = new StringBuilder();
+
         for (int i = 0; i < listOfCustomers.length; i++) {
-            System.out.println(i + ". " + listOfCustomers[i]);
+            sortedCustomers.append(listOfCustomers[i] + "\n");
         }
+
+        return sortedCustomers.toString();
     }
 
-    public void printCardNumbersInTheInterval(int begin, int end) {
-        System.out.println("Customers with card number from " + begin + " to " + end + ":");
+    public String cardNumbersInTheInterval(int begin, int end) {
+        StringBuilder selectedCustomers = new StringBuilder();
+
         for (int i = 0; i < customers.length; i++) {
             if (customers[i].getCardNumber() >= begin && customers[i].getCardNumber() <= end) {
-                System.out.println(customers[i].getLastName() + " " + customers[i].getFirstName() + " " + customers[i].getPatronymic());
+                selectedCustomers.append(customers[i].getLastName() + " " + customers[i].getFirstName() + " " + customers[i].getMiddleName() + "\n");
             }
         }
+
+        return selectedCustomers.toString();
     }
 }

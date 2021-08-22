@@ -14,9 +14,6 @@ public class Time {
     private int seconds;
 
     public Time() {
-        hours = 0;
-        minutes = 0;
-        seconds = 0;
     }
 
     public Time(int hours, int minutes, int seconds) {
@@ -42,43 +39,37 @@ public class Time {
     }
 
     public String getTime() {
-        String hours = toString(this.hours);
-        String minutes = toString(this.minutes);
-        String seconds = toString(this.seconds);
-
         return hours + ":" + minutes + ":" + seconds;
     }
 
-    public int increaseHours(int increasing) {
-        if (hours + increasing > 23) {
-            hours = hours + increasing - 24;
-        } else {
-            hours += increasing;
-        }
-
-        return hours;
+    public void decreaseHours(int decreasing) {
+        hours = (24 - ((decreasing - hours) % 24)) % 24;
     }
 
-    public int increaseMinutes(int increasing) {
-        if (minutes + increasing > 59) {
-            increaseHours((minutes + increasing) / 60);
-            minutes = (minutes + increasing) % 60;
-        } else {
-            minutes += increasing;
-        }
-
-        return minutes;
+    public void decreaseMinutes(int decreasing) {
+        int coef = decreasing % 60 > minutes ? 1 : 0;
+        decreaseHours(decreasing / 60 + coef);
+        minutes = (60 - Math.abs(decreasing - minutes) % 60) % 60;
     }
 
-    public int increaseSeconds(int increasing) {
-        if (seconds + increasing > 59) {
-            increaseMinutes((seconds + increasing) / 60);
-            seconds = (seconds + increasing) % 60;
-        } else {
-            seconds += increasing;
-        }
+    public void decreaseSeconds(int decreasing) {
+        int coef = decreasing % 60 > seconds ? 1 : 0;
+        decreaseMinutes(decreasing / 60 + coef);
+        seconds = (60 - (decreasing % 60 - seconds)) % 60;
+    }
 
-        return seconds;
+    public void increaseHours(int increasing) {
+        hours = (hours + increasing) % 24;
+    }
+
+    public void increaseMinutes(int increasing) {
+        increaseHours((minutes + increasing) / 60);
+        minutes = (minutes + increasing) % 60;
+    }
+
+    public void increaseSeconds(int increasing) {
+        increaseMinutes((seconds + increasing) / 60);
+        seconds = (seconds + increasing) % 60;
     }
 
     public int getHours() {
@@ -117,11 +108,7 @@ public class Time {
         }
     }
 
-    public String toString(int digits) {
-        if (digits < 10) {
-            return "0" + digits;
-        } else {
-            return "" + digits;
-        }
+    public String toString() {
+        return hours + ":" + minutes + ":" + seconds;
     }
 }

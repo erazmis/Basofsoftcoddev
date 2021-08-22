@@ -7,21 +7,30 @@ package com.epam.module_4.aggregation_and_composition.task_2;
 
 public class Wheel {
 
-    private String wheels;
+    private String wheel;
+    private boolean isSpinning;
 
-    public Wheel(String wheels) {
-        this.wheels = wheels;
+    public Wheel(String wheel, boolean isSpinning) {
+        this.wheel = wheel;
+        this.isSpinning = isSpinning;
     }
 
     public Wheel() {
-        wheels = "not spinning";
     }
 
-    public String getWheels() {
-        return wheels;
+    public String getWheel() {
+        return wheel;
     }
 
-    public void setWheels(String wheels) {
-        this.wheels = wheels;
+    public void setWheel(String wheel) {
+        this.wheel = wheel;
+    }
+
+    public boolean areSpinning() {
+        return isSpinning;
+    }
+
+    public void setSpinning(boolean spinning) {
+        this.isSpinning = spinning;
     }
 }

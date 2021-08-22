@@ -5,21 +5,24 @@
 
 package com.epam.module_4.aggregation_and_composition.task_2;
 
+import java.util.Arrays;
+
 public class Car {
 
     private final String carModel;
-    Engine engine;
-    Wheel wheels;
+    private Engine engine;
+    private Wheel[] wheels;
 
-    public Car(Engine engine, Wheel wheels, String carModel) {
+    public Car(Engine engine, Wheel wheel, int numberOfWheels, String carModel) {
         this.engine = engine;
-        this.wheels = wheels;
+        this.wheels = new Wheel[numberOfWheels];
+        Arrays.fill(wheels, wheel);
         this.carModel = carModel;
     }
 
     public Car() {
         engine = new Engine();
-        wheels = new Wheel();
+        wheels = new Wheel[4];
         carModel = "Lada";
     }
 
@@ -28,20 +31,41 @@ public class Car {
             engine.fuelCombastion();
             try {
                 Thread.sleep(5000);
-            } catch (InterruptedException e) {
-            }
+            } catch (InterruptedException e) {}
         }
+
         stop();
     }
 
     private void stop() {
         engine.setEngineRunning(false);
-        wheels.setWheels("not spinning");
-
+        for (int i = 0; i < wheels.length; i++) {
+            wheels[i].setSpinning(false);
+        }
     }
 
     private void refuel() {
         stop();
         engine.setFuel(100);
+    }
+
+    public String getCarModel() {
+        return carModel;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public Wheel[] getWheels() {
+        return wheels;
+    }
+
+    public void setWheels(Wheel wheel) {
+        Arrays.fill(wheels, wheel);
     }
 }

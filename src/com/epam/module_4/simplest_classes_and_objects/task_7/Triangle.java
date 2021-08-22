@@ -2,7 +2,7 @@
  * Описать класс, представляющий треугольник. Предусмотреть методы для создания объектов, вычисления
  * площади, периметра и точки пересечения медиан.
  * <p>
- * I don't use Math.hypot(), 'cause it's slower, than Math.sqrt(Math.pow(), Math.pow())
+ * I don't use Math.hypot(), 'cause it's slower, than Math.sqrt(Math.pow() + Math.pow())
  */
 
 package com.epam.module_4.simplest_classes_and_objects.task_7;
