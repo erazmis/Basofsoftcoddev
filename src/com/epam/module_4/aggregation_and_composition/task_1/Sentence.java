@@ -2,41 +2,33 @@ package com.epam.module_4.aggregation_and_composition.task_1;
 
 public class Sentence {
 
-    private Word[] sentence;
+    private Word[] words;
 
     public Sentence(Word... words) {
-        sentence = words;
+        this.words = words;
     }
 
-    public Sentence(String str) {
-        String[] words = str.replace(".", "").stripLeading().split(" ");
-        sentence = new Word[words.length];
-        for (int i = 0; i < words.length; i++) {
-            sentence[i] = new Word(words[i]);
-        }
+    public Word[] getWords() {
+        return words;
     }
 
-    public Word[] getSentence() {
-        return sentence;
-    }
-
-    public void setSentence(Word[] sentence) {
-        this.sentence = sentence;
+    public void setWords(Word[] words) {
+        this.words = words;
     }
 
     @Override
     public String toString() {
-        String[] words = new String[sentence.length];
+        String[] words = new String[this.words.length];
 
-        if (sentence[0].toString().charAt(0) >= 'a' && sentence[0].toString().charAt(0) <= 'z') {
-            sentence[0] = new Word(sentence[0].toString().replace(sentence[0].toString().charAt(0), (char) (sentence[0].toString().charAt(0) - 32)));
+        if (this.words[0].toString().charAt(0) >= 'a' && this.words[0].toString().charAt(0) <= 'z') {
+            this.words[0] = new Word(this.words[0].toString().replace(this.words[0].toString().charAt(0), (char) (this.words[0].toString().charAt(0) - 32)));
         }
 
-        for (int i = 0; i < sentence.length; i++) {
-            words[i] = sentence[i].toString();
+        for (int i = 0; i < this.words.length; i++) {
+            words[i] = this.words[i].toString();
         }
 
 
-        return String.join(" ", words) + ".";
+        return String.join(" ", words);
     }
 }
