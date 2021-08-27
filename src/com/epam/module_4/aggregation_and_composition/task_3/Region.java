@@ -13,8 +13,8 @@ public class Region {
     public Region() {
     }
 
-    public Region(String regionCenter, District ... districts) {
-        this.regionCenter = new City(regionCenter);
+    public Region(City regionCenter, District... districts) {
+        this.regionCenter = regionCenter;
         this.districts = districts;
     }
 
@@ -31,6 +31,4 @@ public class Region {
     public String getRegionCenter() {
         return regionCenter.toString();
     }
-
-
 }

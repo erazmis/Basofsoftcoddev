@@ -9,15 +9,19 @@ public class Engine {
 
     private boolean isEngineRunning;
     private int fuel;
+    private static int AMOUNT;
 
-    public Engine() {
-        isEngineRunning = false;
-        fuel = 100;
+    static {
+        AMOUNT = 100;
     }
 
-    public Engine(boolean isEngineRunning, int fuel) {
+    public Engine() {
+        fuel = AMOUNT;
+    }
+
+    public Engine(boolean isEngineRunning, int amount) {
         this.isEngineRunning = isEngineRunning;
-        this.fuel = fuel;
+        this.fuel = amount;
     }
 
     public boolean isEngineRunning() {
@@ -32,8 +36,12 @@ public class Engine {
         return fuel;
     }
 
-    public void setFuel(int fuel) {
-        this.fuel = fuel;
+    public void refuel() {
+        fuel = AMOUNT;
+    }
+
+    public void setFuel(int amount) {
+        this.fuel = amount;
     }
 
     public void fuelCombastion() {

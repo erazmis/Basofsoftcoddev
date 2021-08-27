@@ -12,7 +12,7 @@ public class District {
     public District() {
     }
 
-    public District(City ... cities) {
+    public District(City... cities) {
         this.cities = cities;
     }
 

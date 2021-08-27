@@ -15,8 +15,10 @@ public class Car {
 
     public Car(Engine engine, Wheel wheel, int numberOfWheels, String carModel) {
         this.engine = engine;
-        this.wheels = new Wheel[numberOfWheels];
-        Arrays.fill(wheels, wheel);
+        if (numberOfWheels % 2 == 0) {
+            this.wheels = new Wheel[numberOfWheels];
+            Arrays.fill(wheels, wheel);
+        }
         this.carModel = carModel;
     }
 
@@ -26,7 +28,11 @@ public class Car {
         carModel = "Lada";
     }
 
-    private void go() {
+    public void changeWheel(Wheel newWheel, int wheelNumber) {
+        wheels[wheelNumber] = newWheel;
+    }
+
+    public void go() {
         while (engine.getFuel() > 0) {
             engine.fuelCombastion();
             try {
@@ -37,16 +43,14 @@ public class Car {
         stop();
     }
 
-    private void stop() {
+    public void stop() {
         engine.setEngineRunning(false);
-        for (int i = 0; i < wheels.length; i++) {
-            wheels[i].setSpinning(false);
-        }
+        Wheel.setSpinning(false);
     }
 
-    private void refuel() {
+    public void refuel() {
         stop();
-        engine.setFuel(100);
+        engine.refuel();
     }
 
     public String getCarModel() {
@@ -65,7 +69,10 @@ public class Car {
         return wheels;
     }
 
-    public void setWheels(Wheel wheel) {
-        Arrays.fill(wheels, wheel);
+    public void setWheels(Wheel wheel, int numberOfWheels) {
+
+        if (wheels.length == numberOfWheels) {
+            Arrays.fill(wheels, wheel);
+        }
     }
 }
