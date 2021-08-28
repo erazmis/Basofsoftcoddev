@@ -49,10 +49,10 @@ public class RegularExpressions_2 {
 
     private static void parseXml(String xml) {
         Pattern startTagPattern = Pattern.compile("<[^/].+?>");
-        Pattern startTagWithAttributePattern = Pattern.compile("<[^/].*=.+?>");
-        Pattern endTagPattern = Pattern.compile("</.*>");
-        Pattern emptyElementTagPattern = Pattern.compile("<.*/>");
-        Pattern contentPattern = Pattern.compile(">(.*)<");
+        Pattern startTagWithAttributePattern = Pattern.compile("<[^/].+?=.+?>");
+        Pattern endTagPattern = Pattern.compile("</.+?>");
+        Pattern emptyElementTagPattern = Pattern.compile("<.+?/>");
+        Pattern contentPattern = Pattern.compile(">.+?<");
 
         String[] xmlStrings = xml.split("\n");
         for (int i = 0; i < xmlStrings.length; i++) {
