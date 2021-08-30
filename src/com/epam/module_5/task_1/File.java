@@ -29,7 +29,7 @@ public class File {
     public void rename(String name) {
         String[] newName = this.name.split("\\.");
         newName[0] = name;
-        setName(String.join(".", newName));
+        setName(newName[0].concat(".").concat(newName[1]));
     }
 
     public String getName() {
